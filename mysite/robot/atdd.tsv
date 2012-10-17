@@ -22,4 +22,8 @@ Can Create New Poll Via Admin Site
 	Input Text	//input[@name='password']	admin
 	Press Key	//input[@name='password']	\n
 	Page Should Contain	Site administration	
-	Page Should Contain Link	Polls	
+	Click Link	//a[text()='Polls' and @href='/admin/polls/poll/']	
+	Element Should Contain	//body	0 polls
+	Click Link	link=Add poll	
+	Page Should Contain	Question	
+	Page Should Contain	Date published:	

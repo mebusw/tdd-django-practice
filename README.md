@@ -1,6 +1,8 @@
 Test-Driven Django Tutorial
 ================
 
+* This practice replace the `fts` with `RobotFramework` + `Selenium2Library`
+
 The Concept
 -----------------
 
