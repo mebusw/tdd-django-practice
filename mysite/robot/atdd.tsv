@@ -12,7 +12,7 @@ ${INVALID PASSWORD}	12345678
 @{LIST}	one	two	three
 ${BROWSER}     	chrome	#chrome	#c
 ${IsVirtualDisplay}	No		
-${URL}	http://127.0.0.1:8000/		
+${URL}	http://127.0.0.1:8000		
 			
 *** Test Cases ***			
 Can Create New Poll Via Admin Site			
