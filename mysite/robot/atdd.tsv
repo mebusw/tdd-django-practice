@@ -26,8 +26,9 @@ Can Create New Poll Via Admin Site
 	Element Should Contain	//body	0 polls
 	Click Link	link=Add poll	
 	Page Should Contain	Question	
-	Page Should Contain	Pub date	
+	Page Should Contain	Date published	
 	Input Text	//input[@name='question']	How awesome is Test-Driven Development?
 	Input Text	//input[@name='pub_date_0']	\01/01/12
 	Input Text	//input[@name='pub_date_1']	\00:00
 	Click Button	//input[@value='Save']	
+	Page Should Contain	How awesome is Test-Driven Development?	
