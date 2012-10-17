@@ -18,3 +18,8 @@ ${URL}	http://127.0.0.1:8000
 Can Create New Poll Via Admin Site			
 	Go To	${URL}/admin/	
 	Page Should Contain	Django administration	
+	Input Text	//input[@name='username']	admin
+	Input Text	//input[@name='password']	admin
+	Press Key	//input[@name='password']	\n
+	Page Should Contain	Site administration	
+	Page Should Contain Link	Polls	
