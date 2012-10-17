@@ -30,5 +30,10 @@ Can Create New Poll Via Admin Site
 	Input Text	//input[@name='question']	How awesome is Test-Driven Development?
 	Input Text	//input[@name='pub_date_0']	\01/01/12
 	Input Text	//input[@name='pub_date_1']	\00:00
+			
+			
+	Input Text	//input[@name='choice_set-0-choice']	Very awesome
+	Input Text	//input[@name='choice_set-1-choice']	Quite awesome
+	Input Text	//input[@name='choice_set-2-choice']	Moderately awesome
 	Click Button	//input[@value='Save']	
 	Page Should Contain	How awesome is Test-Driven Development?	
