@@ -77,3 +77,16 @@ class ChoiceModelTest(TestCase):
     def test_choice_defaults(self):
         choice = Choice()
         self.assertEquals(choice.votes, 0)        
+        
+class HomePageViewTest(TestCase):
+    def test_root_url_shows_all_polls(self):
+        # set up some polls
+        poll1 = Poll(question='6 times 7', pub_date=timezone.now())
+        poll1.save()
+        poll2 = Poll(question='life, the universe and everything', pub_date=timezone.now())
+        poll2.save()
+
+        response = self.client.get('/')
+        
+        self.assertIn(poll1.question, response.content)
+        self.assertIn(poll2.question, response.content)        

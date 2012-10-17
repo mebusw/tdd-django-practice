@@ -19,6 +19,13 @@ Can Create New Poll Via Admin Site
 	Login To Admin Site		
 	View the Polls		
 	Add A New Poll		
+Voting On A New Poll			
+	Go To	${URL}/	
+	Element Should Contain	tag=h1	Polls
+	Click Link	link=How awesome is Test-Driven Development?	
+	Element Should Contain	tag=h1	Poll Results
+	Element Should Contain	tag=h2	How awesome is Test-Driven Development?
+	Element Should Contain	//body	No-one has voted on this poll yet
 			
 *** Keywords ***			
 Login To Admin Site			
