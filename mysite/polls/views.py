@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from polls.models import Poll
+from polls.forms import PollVoteForm
 
 def home(request):
     context = {'polls': Poll.objects.all()}
@@ -7,4 +8,5 @@ def home(request):
     
 def poll(request, poll_id):
     poll = Poll.objects.get(pk=poll_id)
-    return render(request, 'poll.html', {'poll': poll})
+    form = PollVoteForm(poll=poll)
+    return render(request, 'poll.html', {'poll': poll, 'form': form})
