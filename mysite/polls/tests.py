@@ -88,5 +88,10 @@ class HomePageViewTest(TestCase):
 
         response = self.client.get('/')
         
+        self.assertTemplateUsed(response, 'home.html')
+
+        polls_in_context = response.context['polls']
+        self.assertEquals(list(polls_in_context), [poll1, poll2])
+        
         self.assertIn(poll1.question, response.content)
         self.assertIn(poll2.question, response.content)        
