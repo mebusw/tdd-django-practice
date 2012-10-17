@@ -8,6 +8,7 @@ Replace this with more appropriate tests for your application.
 from django.test import TestCase
 from django.utils import timezone
 from polls.models import Poll, Choice
+from django.core.urlresolvers import reverse
 
 class PollModelTest(TestCase):
     def test_creating_a_new_poll_and_saving_it_to_the_database(self):
@@ -79,7 +80,7 @@ class ChoiceModelTest(TestCase):
         self.assertEquals(choice.votes, 0)        
         
 class HomePageViewTest(TestCase):
-    def test_root_url_shows_all_polls(self):
+    def test_root_url_shows_links_to_all_polls(self):
         # set up some polls
         poll1 = Poll(question='6 times 7', pub_date=timezone.now())
         poll1.save()
@@ -87,11 +88,20 @@ class HomePageViewTest(TestCase):
         poll2.save()
 
         response = self.client.get('/')
-        
+
+        # check we've used the right template
         self.assertTemplateUsed(response, 'home.html')
 
+        # check we've passed the polls to the template
         polls_in_context = response.context['polls']
         self.assertEquals(list(polls_in_context), [poll1, poll2])
-        
+
+        # check the poll names appear on the page
         self.assertIn(poll1.question, response.content)
-        self.assertIn(poll2.question, response.content)        
+        self.assertIn(poll2.question, response.content)
+
+        # check the page also contains the urls to individual polls pages
+        poll1_url = reverse('polls.views.poll', args=[poll1.id,])
+        self.assertIn(poll1_url, response.content)
+        poll2_url = reverse('polls.views.poll', args=[poll2.id,])
+        self.assertIn(poll2_url, response.content)
