@@ -10,28 +10,36 @@ ${INVALID USERNAME}	abcdefgh
 ${INVALID PASSWORD}	12345678		
 @{TOOLS}	pybot	jybot	
 @{LIST}	one	two	three
-${BROWSER}     	chrome	#chrome	#c
+${BROWSER}     	chrome	#chrome	#firefox
 ${IsVirtualDisplay}	No		
 ${URL}	http://127.0.0.1:8000		
 			
 *** Test Cases ***			
 Can Create New Poll Via Admin Site			
+	Login To Admin Site		
+	View the Polls		
+	Add A New Poll		
+			
+*** Keywords ***			
+Login To Admin Site			
 	Go To	${URL}/admin/	
 	Page Should Contain	Django administration	
 	Input Text	//input[@name='username']	admin
 	Input Text	//input[@name='password']	admin
 	Press Key	//input[@name='password']	\n
 	Page Should Contain	Site administration	
+			
+View the Polls			
 	Click Link	//a[text()='Polls' and @href='/admin/polls/poll/']	
 	Element Should Contain	//body	0 polls
+			
+Add A New Poll			
 	Click Link	link=Add poll	
 	Page Should Contain	Question	
 	Page Should Contain	Date published	
 	Input Text	//input[@name='question']	How awesome is Test-Driven Development?
 	Input Text	//input[@name='pub_date_0']	\01/01/12
 	Input Text	//input[@name='pub_date_1']	\00:00
-			
-			
 	Input Text	//input[@name='choice_set-0-choice']	Very awesome
 	Input Text	//input[@name='choice_set-1-choice']	Quite awesome
 	Input Text	//input[@name='choice_set-2-choice']	Moderately awesome
