@@ -1,0 +1,20 @@
+*** Settings ***			
+Documentation	TDD-Django-Tutorial Test Suite		
+#Resource	resources.tsv		
+Library	Selenium2Library		
+Suite Setup	Open Browser	${URL}	${BROWSER}
+Suite Teardown	Close Browser		
+			
+*** Variables ***			
+${INVALID USERNAME}	abcdefgh		
+${INVALID PASSWORD}	12345678		
+@{TOOLS}	pybot	jybot	
+@{LIST}	one	two	three
+${BROWSER}     	chrome	#chrome	#c
+${IsVirtualDisplay}	No		
+${URL}	http://127.0.0.1:8000/		
+			
+*** Test Cases ***			
+Can Create New Poll Via Admin Site			
+	Go To	${URL}/admin/	
+	Page Should Contain	Django administration	
