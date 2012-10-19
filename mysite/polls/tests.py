@@ -8,6 +8,7 @@ Replace this with more appropriate tests for your application.
 from django.test import TestCase
 from django.utils import timezone
 from polls.models import Poll, Choice
+from polls.forms import PollVoteForm
 from django.core.urlresolvers import reverse
 
 class PollModelTest(TestCase):
@@ -129,7 +130,6 @@ class SinglePollViewTest(TestCase):
         # check our 'no votes yet' message appears
         self.assertIn('No-one has voted on this poll yet', response.content)        
         
-from polls.forms import PollVoteForm
 
 class PollsVoteFormTest(TestCase):
 
